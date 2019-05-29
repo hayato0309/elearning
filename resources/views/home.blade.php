@@ -6,7 +6,7 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <figure><img src="" alt="" class="rounded-circle" height="100px"></figure>
+                    <figure class="text-center"><img src="{{ asset('images/dog.png') }}" alt="" class="rounded-circle" height="100px"></figure>
                     <h3 class="text-center">Hayato</h3>
                     <div class="text-center"><a class="btn btn-primary" href="">Edit Profile</a></div>
                     <hr>
