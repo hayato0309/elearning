@@ -86,7 +86,7 @@ class UserController extends Controller
         $validationData = $request->validate([
             'photo' => 'image|mimes:jpg,jpeg,png|max:10240|nullable',
             'name' => 'required|min:3|max:30',
-            'email' => 'required|min:3|max:50',
+            'email' => 'required|min:3|max:50|unique:users',
             'password' => 'required|min:6|max:30|confirmed',
             'password_confirmation' => 'required|min:6|max:30',
         ]);
@@ -109,8 +109,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('users');
     }
 }
