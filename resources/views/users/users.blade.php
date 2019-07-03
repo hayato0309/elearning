@@ -5,13 +5,17 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-            <h1>Users List</h1>
+            <h1>User List</h1>
             @foreach($users as $user)
                 <div class="card py-1 mb-2">
                     <div class="container">
                         <div class="row d-flex align-items-center">
                             <div class="col-sm-1">
-                                <img src="{{ asset('images/dog.png') }}" alt="profile" height="50px">
+                                @if ($user->photo !== "public/images/user.png")
+                                    <img src="/storage/images/{{ $user->id }}.jpg" alt="profile" height="50px" width="50px">
+                                @else
+                                    <img src="{{ asset('images/user.png') }}" alt="profile_img" style="height: 50px; width: 50px">
+                                @endif
                             </div>
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center">{{ $user->name }}</div>

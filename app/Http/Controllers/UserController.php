@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -17,8 +18,12 @@ class UserController extends Controller
      */
     public function index()
     {
+        // $is_image = false;
+        // if (Storage::disk('local')->exists('public/images/' . $user->id . '.jpg')) {
+        //     $is_image = true;
+        // }
         $users = User::where('id', '!=', auth()->id())->get();
-        return view('users/users', compact('users'));
+        return view('users/users', compact('users','is_image'));
     }
 
     /**
@@ -86,7 +91,8 @@ class UserController extends Controller
         $validationData = $request->validate([
             'photo' => 'image|mimes:jpg,jpeg,png|max:10240|nullable',
             'name' => 'required|min:3|max:30',
-            'email' => 'required|min:3|max:50|unique:users',
+            'email' => 'required|min:3|max:50',
+                Rule::unique('users')->ignore($id),
             'password' => 'required|min:6|max:30|confirmed',
             'password_confirmation' => 'required|min:6|max:30',
         ]);
