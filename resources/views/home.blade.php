@@ -37,7 +37,7 @@
             </div>
             <br>
             <div>   
-                <a href="{{ route('categories') }}" class="btn btn-primary btn-lg btn-block" role="button">Choose Categories</a>
+                <a href="{{ route('categories') }}" class="btn btn-primary btn-lg btn-block" role="button">Categories</a>
             </div>
         </div>
         <div class="col-sm-8">
