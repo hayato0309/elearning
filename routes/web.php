@@ -8,3 +8,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/users', 'UserController@index')->name('users');
+Route::get('/user/{id}/edit', 'UserController@edit')->name('user.edit');
+Route::post('/user/{id}/update', 'UserController@update')->name('user.update');
+
+Route::get('categories', 'CategoryController@index')->name('categories');
+Route::get('createCategory', 'CategoryController@display_category_create_page')->name('create.category');
+Route::post('category/store', 'CategoryController@store')->name('store.category');
+Route::get('category/{id}/edit', 'CategoryController@edit')->name('edit.category');
+Route::post('category/{id}/update', 'CategoryController@update')->name('update.category');
+Route::get('category/{id}/destroy', 'CategoryController@destroy')->name('destroy.category');

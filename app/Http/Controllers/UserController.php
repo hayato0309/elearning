@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -58,7 +61,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $user = User::find($id);
+        // return view('users/editUser', compact('user'));
+
+        $user = User::find($id);
+
+        $is_image = false;
+        if (Storage::disk('local')->exists('public/images/' . Auth::id() . '.jpg')) {
+            $is_image = true;
+        }
+
+        return view('users/editUser', compact('user', 'is_image'));
     }
 
     /**
@@ -70,7 +83,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validationData = $request->validate([
+            'photo' => 'image|mimes:jpg,jpeg,png|max:10240|nullable',
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|min:3|max:50',
+            'password' => 'required|min:6|max:30|confirmed',
+            'password_confirmation' => 'required|min:6|max:30',
+        ]);
+
+        $user = User::find($id);
+        if (isset($request->photo)) {
+            $user->photo = $request->photo->storeAs('public/images', Auth::id().'.jpg');
+        }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request['password']);
+        $user->save();
+
+        return redirect('home');
     }
 
     /**

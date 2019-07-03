@@ -6,9 +6,15 @@
         <div class="col-sm-4">
             <div class="card">
                 <div class="card-body">
-                    <figure class="text-center"><img src="{{ asset('images/dog.png') }}" alt="" class="rounded-circle" height="100px"></figure>
-                    <h3 class="text-center">Hayato</h3>
-                    <div class="text-center"><a class="btn btn-primary" href="">Edit Profile</a></div>
+                    @if ($is_image)
+                        <figure class="text-center">
+                            <img src="/storage/images/{{ Auth::id() }}.jpg" class="rounded-circle" width="100px" height="100px">
+                        </figure>
+                    @else
+                        <div class="text-center"><img src="{{ asset('images/user.png') }}" alt="profile_img" style="height: 100px; width: 100px"></div>
+                    @endif
+                    <h3 class="text-center">{{ Auth()->user()->name }}</h3>
+                    <div class="text-center"><a class="btn btn-primary" href="{{ route('user.edit', ['id'=> auth()->user()->id]) }}">Edit Profile</a></div>
                     <hr>
                     <div class="container">
                         <div class="row">
@@ -28,6 +34,10 @@
                         <div class="text-center">words learnded</div>
                     </div>
                 </div>
+            </div>
+            <br>
+            <div>   
+                <a href="{{ route('categories') }}" class="btn btn-primary btn-lg btn-block" role="button">Choose Categories</a>
             </div>
         </div>
         <div class="col-sm-8">
