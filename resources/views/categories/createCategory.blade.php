@@ -8,7 +8,7 @@
             <div class="">
                 <h2>Create a new category</h2>
             </div>
-            <div class="card p-2">
+            <div class="card p-3">
                 <div class="container">
                     <form action="{{ route('store.category') }}" method="POST">
                     @csrf
@@ -19,6 +19,22 @@
                         <div class="form-group">
                             <label for="">Description</label>
                             <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div for="">Difficulty Level</div>
+                            <div class="custom-control custom-radio float-left">
+                                <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="difficulty_level" value="1" required>
+                                <label class="custom-control-label mr-3" for="defaultGroupExample1">Easy</label>
+                            </div>
+                            <div class="custom-control custom-radio float-left">
+                                <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="difficulty_level" value="2" required>
+                                <label class="custom-control-label mr-3" for="defaultGroupExample2">Normal</label>
+                            </div>
+                            <div class="custom-control custom-radio float-left">
+                                <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="difficulty_level" value="3" required>
+                                <label class="custom-control-label mr-3" for="defaultGroupExample3">Hard</label>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                         <div class="container">
                             <div class="row">

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-            <h1>User List</h1>
+            <h3>User List</h3>
             @foreach($users as $user)
                 <div class="card py-1 mb-2">
                     <div class="container">

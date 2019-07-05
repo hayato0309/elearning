@@ -18,3 +18,6 @@ Route::post('category/store', 'CategoryController@store')->name('store.category'
 Route::get('category/{id}/edit', 'CategoryController@edit')->name('edit.category');
 Route::post('category/{id}/update', 'CategoryController@update')->name('update.category');
 Route::get('category/{id}/destroy', 'CategoryController@destroy')->name('destroy.category');
+
+Route::get('category/{id}/addWord', 'WordController@add')->name('add.word');
+Route::post('category/{id}/addWord/store', 'WordController@store')->name('store.word');

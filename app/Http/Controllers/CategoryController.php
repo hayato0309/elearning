@@ -23,6 +23,7 @@ class CategoryController extends Controller
         $category = new Category();
         $category->category_name = $request->input('category_name');
         $category->description = $request->input('description');
+        $category->difficulty_level = $request->input('difficulty_level');
         $category->save();
         
         return redirect()->route('categories');
@@ -39,9 +40,8 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->category_name = $request->input('category_name');
         $category->description = $request->input('description');
+        $category->difficulty_level = $request->input('difficulty_level');
         $category->save();
-
-        // dd($category);
 
         return redirect()->route('categories');
     }

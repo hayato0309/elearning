@@ -24,6 +24,7 @@
                             <div class="row">
                                 @if (auth()->user()->is_admin !== 0)
                                     <div class="col-sm-8">
+                                        <a href="{{ route('add.word', ['id' => $category->id]) }}" class="card-link">Add Words</a>
                                         <a href="{{ route('edit.category', ['id' => $category->id]) }}" class="card-link">Edit</a>
                                         <a href="{{ route('destroy.category', ['id' => $category->id]) }}" class="card-link">Delete</a>
                                     </div>
@@ -45,8 +46,8 @@
                 </div>
             </a>
         @endforeach
-        @empty($categories)
-            <h3 class="text-center">No Categories</h3>
+        @empty($category)
+            <h3 class="text-center w-100">No Categories yet</h3>
         @endempty
     </div>
 </div>
