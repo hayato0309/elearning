@@ -13,7 +13,7 @@
     </div>
     <div class="row">
         @foreach($categories as $category)
-            <a href="#" class="text-decoration-none text-black">
+            <a href="{{ route('words', ['id' => $category->id]) }}" class="">
                 <div class="card mx-2 my-1" style="width: 22.5rem;">
                     <div class="card-body">
                         <h4 class="card-title">{{ $category->category_name }}</h4>
@@ -24,7 +24,6 @@
                             <div class="row">
                                 @if (auth()->user()->is_admin !== 0)
                                     <div class="col-sm-8">
-                                        <a href="{{ route('add.word', ['id' => $category->id]) }}" class="card-link">Add Words</a>
                                         <a href="{{ route('edit.category', ['id' => $category->id]) }}" class="card-link">Edit</a>
                                         <a href="{{ route('destroy.category', ['id' => $category->id]) }}" class="card-link">Delete</a>
                                     </div>

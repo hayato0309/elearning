@@ -15,9 +15,11 @@ class WordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $words = Word::where('category_id', $id)->get();
+        $category = Category::find($id);
+        return view('/words/words', compact('words', 'category'));
     }
 
     /**
@@ -49,7 +51,7 @@ class WordController extends Controller
         $word->user_id = auth()->user()->id;
         $word->save();
         
-        return redirect()->route('categories');
+        return redirect()->route('words', compact('id'));
     }
 
     /**
@@ -69,9 +71,11 @@ class WordController extends Controller
      * @param  \App\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function edit(Word $word)
+    public function edit($id, $word_id)
     {
-        //
+        $category = Category::find($id);
+        $word = Word::find($word_id);
+        return view('/words/editWord', compact('category', 'word'));
     }
 
     /**
@@ -81,9 +85,19 @@ class WordController extends Controller
      * @param  \App\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Word $word)
+    public function update(Request $request, $id, $word_id)
     {
-        //
+        $word = Word::find($word_id);
+        $word->word = $request->input('word');
+        $word->answer = $request->input('answer');
+        $word->choice01 = $request->input('choice01');
+        $word->choice02 = $request->input('choice02');
+        $word->choice03 = $request->input('choice03');
+        $word->category_id = $id;
+        $word->user_id = auth()->user()->id;
+        $word->save();
+        
+        return redirect()->route('words', compact('id'));
     }
 
     /**
@@ -92,8 +106,11 @@ class WordController extends Controller
      * @param  \App\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Word $word)
+    public function destroy($id, $word_id)
     {
-        //
+        $word = Word::find($word_id);
+        $word->delete();
+
+        return redirect()->route('words', compact('id'));
     }
 }

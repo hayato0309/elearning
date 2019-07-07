@@ -19,5 +19,10 @@ Route::get('category/{id}/edit', 'CategoryController@edit')->name('edit.category
 Route::post('category/{id}/update', 'CategoryController@update')->name('update.category');
 Route::get('category/{id}/destroy', 'CategoryController@destroy')->name('destroy.category');
 
+Route::get('category/{id}/words', 'WordController@index')->name('words');
 Route::get('category/{id}/addWord', 'WordController@add')->name('add.word');
 Route::post('category/{id}/addWord/store', 'WordController@store')->name('store.word');
+Route::get('category/{id}/word/{word_id}/edit', 'WordController@edit')->name('edit.word');
+Route::post('category/{id}/word/{word_id}/update', 'WordController@update')->name('update.word');
+Route::get('category/{id}/word/{word_id}/destroy', 'WordController@destroy')->name('destroy.word');
+
